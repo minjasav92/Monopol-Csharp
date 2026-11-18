@@ -133,6 +133,9 @@
   <data name="maca" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\maca-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="monopol_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\monopol_logo_bez_pozadine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="patkica" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\patkica-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -21,13 +21,13 @@ namespace FormaLogIn
                     Exception ex = new Exception("Niste uneli ime igraca!");
                     throw ex;
                 }
-                if(nemaFiguricu)
+                if (nemaFiguricu)
                 {
                     Exception ex = new Exception("Niste izabrali figuricu!");
                     throw ex;
                 }
                 txtImeIgraca.Clear();
-                Igrac noviIgrac = new Igrac(imeIgraca,pbxTrenutni.AccessibleName,pbxTrenutni.Image);
+                Igrac noviIgrac = new Igrac(imeIgraca, pbxTrenutni.AccessibleName, pbxTrenutni.Image);
                 listaIgraca.Add(noviIgrac);
                 lvwIgraci.Items.Add(new ListViewItem(noviIgrac.Info.ToArray()));
                 pbxTrenutni.BackColor = Color.LightGray;

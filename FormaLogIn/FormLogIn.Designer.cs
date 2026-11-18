@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             btnDodajIgraca = new Button();
             txtImeIgraca = new TextBox();
             label2 = new Label();
@@ -45,6 +44,7 @@
             pbxPatka = new PictureBox();
             pbxPingvin = new PictureBox();
             pbxSesir = new PictureBox();
+            pbxLogo = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pbxAutic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxBrodic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxDino).BeginInit();
@@ -53,17 +53,8 @@
             ((System.ComponentModel.ISupportInitialize)pbxPatka).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxPingvin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxSesir).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbxLogo).BeginInit();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(12, 24);
-            label1.Name = "label1";
-            label1.Size = new Size(769, 45);
-            label1.TabIndex = 1;
-            label1.Text = "Dobro dosli u MONOPOL! Napisite igrace i krecemo!";
             // 
             // btnDodajIgraca
             // 
@@ -224,11 +215,22 @@
             pbxSesir.TabStop = false;
             pbxSesir.Click += pbxSesir_Click;
             // 
+            // pictureBox1
+            // 
+            pbxLogo.Image = LogIn.Properties.Resources.monopol_logo;
+            pbxLogo.Location = new Point(176, -3);
+            pbxLogo.Name = "pictureBox1";
+            pbxLogo.Size = new Size(448, 98);
+            pbxLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbxLogo.TabIndex = 16;
+            pbxLogo.TabStop = false;
+            // 
             // frmLogIn
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(pbxLogo);
             Controls.Add(pbxMaca);
             Controls.Add(pbxPatka);
             Controls.Add(pbxPingvin);
@@ -242,7 +244,6 @@
             Controls.Add(label2);
             Controls.Add(txtImeIgraca);
             Controls.Add(btnDodajIgraca);
-            Controls.Add(label1);
             Name = "frmLogIn";
             Text = "Log In";
             ((System.ComponentModel.ISupportInitialize)pbxAutic).EndInit();
@@ -253,12 +254,12 @@
             ((System.ComponentModel.ISupportInitialize)pbxPatka).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbxPingvin).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbxSesir).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbxLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Label label1;
         private Button btnDodajIgraca;
         private TextBox txtImeIgraca;
         private Label label2;
@@ -275,5 +276,6 @@
         private PictureBox pbxPatka;
         private PictureBox pbxPingvin;
         private PictureBox pbxSesir;
+        private PictureBox pbxLogo;
     }
 }
