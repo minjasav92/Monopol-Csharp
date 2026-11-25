@@ -14,7 +14,7 @@ namespace FormaLogIn
         public void btnDodajIgraca_Click(object sender, EventArgs e)
         {
             try
-            {
+            {//mozda dodati da se igraci ne zovu isto
                 string imeIgraca = txtImeIgraca.Text;
                 if (imeIgraca == "")
                 {
@@ -26,6 +26,11 @@ namespace FormaLogIn
                     Exception ex = new Exception("Niste izabrali figuricu!");
                     throw ex;
                 }
+                if (listaIgraca.Count >= 6)
+                {
+                    throw new Exception("Maksimalan broj igrača je 6!");
+                }
+                
                 txtImeIgraca.Clear();
                 Igrac noviIgrac = new Igrac(imeIgraca, pbxTrenutni.AccessibleName, pbxTrenutni.Image);
                 listaIgraca.Add(noviIgrac);
@@ -163,6 +168,19 @@ namespace FormaLogIn
                 SelektujNovi(pbxMaca, pbxTrenutni);
                 pbxTrenutni = pbxMaca;
             }
+        }
+
+        private void btnPočetakIgre_Click(object sender, EventArgs e)
+        {
+            if (listaIgraca.Count < 2)
+            {
+                MessageBox.Show("Za početak igre potrebno je najmanje 2 igrača!");
+                return;
+            }
+            frmIgra forma = new frmIgra(listaIgraca);
+            this.Hide();
+            forma.ShowDialog();
+            this.Close();
         }
     }
 }

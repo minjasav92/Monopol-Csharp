@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Drawing;
+using System.Windows.Forms;
 namespace LogIn
 {
-    internal class Igrac
+    public class Igrac
     {
         string ime;
         string figurica;
@@ -28,6 +29,10 @@ namespace LogIn
             get { return figurica; }
             set { figurica = value; }
         }
+        public int Pozicija { get; set; } = 0;    
+        public PictureBox Pbx { get; set; }        
+        public int Index { get { return indexIgraca; } }
+        public string Ime { get { return ime; } }
         public Image SlikaFigurice
         {
             get { return slikaFigurice; }

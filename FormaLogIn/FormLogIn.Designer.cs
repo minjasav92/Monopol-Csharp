@@ -45,6 +45,7 @@
             pbxPingvin = new PictureBox();
             pbxSesir = new PictureBox();
             pbxLogo = new PictureBox();
+            btnPočetakIgre = new Button();
             ((System.ComponentModel.ISupportInitialize)pbxAutic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxBrodic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxDino).BeginInit();
@@ -58,9 +59,10 @@
             // 
             // btnDodajIgraca
             // 
-            btnDodajIgraca.Location = new Point(303, 101);
+            btnDodajIgraca.Location = new Point(346, 135);
+            btnDodajIgraca.Margin = new Padding(3, 4, 3, 4);
             btnDodajIgraca.Name = "btnDodajIgraca";
-            btnDodajIgraca.Size = new Size(110, 23);
+            btnDodajIgraca.Size = new Size(126, 31);
             btnDodajIgraca.TabIndex = 2;
             btnDodajIgraca.Text = "Dodaj igraca";
             btnDodajIgraca.UseVisualStyleBackColor = true;
@@ -68,18 +70,19 @@
             // 
             // txtImeIgraca
             // 
-            txtImeIgraca.Location = new Point(87, 101);
+            txtImeIgraca.Location = new Point(99, 135);
+            txtImeIgraca.Margin = new Padding(3, 4, 3, 4);
             txtImeIgraca.Name = "txtImeIgraca";
-            txtImeIgraca.Size = new Size(210, 23);
+            txtImeIgraca.Size = new Size(239, 27);
             txtImeIgraca.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F);
-            label2.Location = new Point(47, 103);
+            label2.Location = new Point(54, 137);
             label2.Name = "label2";
-            label2.Size = new Size(34, 19);
+            label2.Size = new Size(42, 23);
             label2.TabIndex = 4;
             label2.Text = "ime:";
             // 
@@ -87,9 +90,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F);
-            label3.Location = new Point(47, 140);
+            label3.Location = new Point(54, 187);
             label3.Name = "label3";
-            label3.Size = new Size(56, 19);
+            label3.Size = new Size(70, 23);
             label3.TabIndex = 5;
             label3.Text = "figurica:";
             // 
@@ -98,9 +101,10 @@
             lvwIgraci.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
             lvwIgraci.GridLines = true;
             lvwIgraci.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            lvwIgraci.Location = new Point(477, 101);
+            lvwIgraci.Location = new Point(545, 166);
+            lvwIgraci.Margin = new Padding(3, 4, 3, 4);
             lvwIgraci.Name = "lvwIgraci";
-            lvwIgraci.Size = new Size(274, 187);
+            lvwIgraci.Size = new Size(313, 248);
             lvwIgraci.TabIndex = 7;
             lvwIgraci.UseCompatibleStateImageBehavior = false;
             lvwIgraci.View = View.Details;
@@ -123,9 +127,10 @@
             // 
             pbxAutic.AccessibleName = "Autic";
             pbxAutic.Image = LogIn.Properties.Resources.autic;
-            pbxAutic.Location = new Point(47, 174);
+            pbxAutic.Location = new Point(54, 232);
+            pbxAutic.Margin = new Padding(3, 4, 3, 4);
             pbxAutic.Name = "pbxAutic";
-            pbxAutic.Size = new Size(70, 70);
+            pbxAutic.Size = new Size(80, 93);
             pbxAutic.SizeMode = PictureBoxSizeMode.Zoom;
             pbxAutic.TabIndex = 8;
             pbxAutic.TabStop = false;
@@ -135,9 +140,10 @@
             // 
             pbxBrodic.AccessibleName = "Brodic";
             pbxBrodic.Image = LogIn.Properties.Resources.brodic;
-            pbxBrodic.Location = new Point(132, 174);
+            pbxBrodic.Location = new Point(151, 232);
+            pbxBrodic.Margin = new Padding(3, 4, 3, 4);
             pbxBrodic.Name = "pbxBrodic";
-            pbxBrodic.Size = new Size(70, 70);
+            pbxBrodic.Size = new Size(80, 93);
             pbxBrodic.SizeMode = PictureBoxSizeMode.Zoom;
             pbxBrodic.TabIndex = 9;
             pbxBrodic.TabStop = false;
@@ -147,9 +153,10 @@
             // 
             pbxDino.AccessibleName = "Dino";
             pbxDino.Image = LogIn.Properties.Resources.dino;
-            pbxDino.Location = new Point(303, 174);
+            pbxDino.Location = new Point(346, 232);
+            pbxDino.Margin = new Padding(3, 4, 3, 4);
             pbxDino.Name = "pbxDino";
-            pbxDino.Size = new Size(70, 70);
+            pbxDino.Size = new Size(80, 93);
             pbxDino.SizeMode = PictureBoxSizeMode.Zoom;
             pbxDino.TabIndex = 11;
             pbxDino.TabStop = false;
@@ -159,9 +166,10 @@
             // 
             pbxKuca.AccessibleName = "Kuca";
             pbxKuca.Image = LogIn.Properties.Resources.kuca;
-            pbxKuca.Location = new Point(217, 174);
+            pbxKuca.Location = new Point(248, 232);
+            pbxKuca.Margin = new Padding(3, 4, 3, 4);
             pbxKuca.Name = "pbxKuca";
-            pbxKuca.Size = new Size(70, 70);
+            pbxKuca.Size = new Size(80, 93);
             pbxKuca.SizeMode = PictureBoxSizeMode.Zoom;
             pbxKuca.TabIndex = 10;
             pbxKuca.TabStop = false;
@@ -171,9 +179,10 @@
             // 
             pbxMaca.AccessibleName = "Maca";
             pbxMaca.Image = LogIn.Properties.Resources.maca;
-            pbxMaca.Location = new Point(303, 262);
+            pbxMaca.Location = new Point(346, 349);
+            pbxMaca.Margin = new Padding(3, 4, 3, 4);
             pbxMaca.Name = "pbxMaca";
-            pbxMaca.Size = new Size(70, 70);
+            pbxMaca.Size = new Size(80, 93);
             pbxMaca.SizeMode = PictureBoxSizeMode.Zoom;
             pbxMaca.TabIndex = 15;
             pbxMaca.TabStop = false;
@@ -183,9 +192,10 @@
             // 
             pbxPatka.AccessibleName = "Patkica";
             pbxPatka.Image = LogIn.Properties.Resources.patkica;
-            pbxPatka.Location = new Point(217, 262);
+            pbxPatka.Location = new Point(248, 349);
+            pbxPatka.Margin = new Padding(3, 4, 3, 4);
             pbxPatka.Name = "pbxPatka";
-            pbxPatka.Size = new Size(70, 70);
+            pbxPatka.Size = new Size(80, 93);
             pbxPatka.SizeMode = PictureBoxSizeMode.Zoom;
             pbxPatka.TabIndex = 14;
             pbxPatka.TabStop = false;
@@ -195,9 +205,10 @@
             // 
             pbxPingvin.AccessibleName = "Pingvin";
             pbxPingvin.Image = LogIn.Properties.Resources.pingvin;
-            pbxPingvin.Location = new Point(132, 262);
+            pbxPingvin.Location = new Point(151, 349);
+            pbxPingvin.Margin = new Padding(3, 4, 3, 4);
             pbxPingvin.Name = "pbxPingvin";
-            pbxPingvin.Size = new Size(70, 70);
+            pbxPingvin.Size = new Size(80, 93);
             pbxPingvin.SizeMode = PictureBoxSizeMode.Zoom;
             pbxPingvin.TabIndex = 13;
             pbxPingvin.TabStop = false;
@@ -207,29 +218,42 @@
             // 
             pbxSesir.AccessibleName = "Sesir";
             pbxSesir.Image = LogIn.Properties.Resources.sesir;
-            pbxSesir.Location = new Point(47, 262);
+            pbxSesir.Location = new Point(54, 349);
+            pbxSesir.Margin = new Padding(3, 4, 3, 4);
             pbxSesir.Name = "pbxSesir";
-            pbxSesir.Size = new Size(70, 70);
+            pbxSesir.Size = new Size(80, 93);
             pbxSesir.SizeMode = PictureBoxSizeMode.Zoom;
             pbxSesir.TabIndex = 12;
             pbxSesir.TabStop = false;
             pbxSesir.Click += pbxSesir_Click;
             // 
-            // pictureBox1
+            // pbxLogo
             // 
             pbxLogo.Image = LogIn.Properties.Resources.monopol_logo;
-            pbxLogo.Location = new Point(176, -3);
-            pbxLogo.Name = "pictureBox1";
-            pbxLogo.Size = new Size(448, 98);
+            pbxLogo.Location = new Point(201, -4);
+            pbxLogo.Margin = new Padding(3, 4, 3, 4);
+            pbxLogo.Name = "pbxLogo";
+            pbxLogo.Size = new Size(512, 131);
             pbxLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             pbxLogo.TabIndex = 16;
             pbxLogo.TabStop = false;
             // 
+            // btnPočetakIgre
+            // 
+            btnPočetakIgre.Location = new Point(604, 477);
+            btnPočetakIgre.Name = "btnPočetakIgre";
+            btnPočetakIgre.Size = new Size(200, 29);
+            btnPočetakIgre.TabIndex = 17;
+            btnPočetakIgre.Text = "Započni igru";
+            btnPočetakIgre.UseVisualStyleBackColor = true;
+            btnPočetakIgre.Click += btnPočetakIgre_Click;
+            // 
             // frmLogIn
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            Controls.Add(btnPočetakIgre);
             Controls.Add(pbxLogo);
             Controls.Add(pbxMaca);
             Controls.Add(pbxPatka);
@@ -244,6 +268,7 @@
             Controls.Add(label2);
             Controls.Add(txtImeIgraca);
             Controls.Add(btnDodajIgraca);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmLogIn";
             Text = "Log In";
             ((System.ComponentModel.ISupportInitialize)pbxAutic).EndInit();
@@ -277,5 +302,6 @@
         private PictureBox pbxPingvin;
         private PictureBox pbxSesir;
         private PictureBox pbxLogo;
+        private Button btnPočetakIgre;
     }
 }
