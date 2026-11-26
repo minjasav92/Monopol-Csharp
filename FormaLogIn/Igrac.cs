@@ -29,7 +29,7 @@ namespace LogIn
             get { return figurica; }
             set { figurica = value; }
         }
-        public int Pozicija { get; set; } = 0;    
+        public int Pozicija { get; set; } = 0;
         public PictureBox Pbx { get; set; }        
         public int Index { get { return indexIgraca; } }
         public string Ime { get { return ime; } }

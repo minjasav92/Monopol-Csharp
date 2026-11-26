@@ -18,11 +18,12 @@ namespace LogIn
         int brojPromena = 0;
         Random rnd = new Random();
         int naPotezu = 0;
-
+        int preostaliKoraci;
+        int kolikoDuplih = 0;
 
         public frmIgra() : this(new List<Igrac>())
         {
-        }
+        } //sta je ovo? jel sme da se brise?
 
         public frmIgra(List<Igrac> igraci)
         {
@@ -52,34 +53,65 @@ namespace LogIn
                 pbx.SizeMode = PictureBoxSizeMode.Zoom;
                 pbx.Size = new Size(30, 30);
                 pbx.BackColor = Color.Transparent;
-               // PictureBox1.Controls.Add(pbx);     // dete table => providnost radi preko slike
+                pbxTabla.Controls.Add(pbx);     // dete table => providnost radi preko slike
                 i.Pbx = pbx;
                 PostaviFiguricu(i);
             }
+            //polja na donjoj strani, s desna na levo
+            int x = 1;
+            for(int i = 0; i < 10; i++)
+            {
+                polja[i].X = pbxTabla.Width - 42 * x;
+                polja[i].Y = pbxTabla.Height - 30;
+                x++;
+            }
+            //polja na levoj strani, odozdo na gore
+            x = 1;
+            for (int i = 10; i < 20; i++)
+            {
+                polja[i].X = 30;
+                polja[i].Y = pbxTabla.Height - 42 * x;
+                x++;
+            }
+            //polja na gornjoj strani, s leva na desno
+            x = 1;
+            for (int i = 20; i < 30; i++)
+            {
+                polja[i].X = 42 * x;
+                polja[i].Y = 30;
+                x++;
+            }
+            //polja na desnoj strani, odozgo na dole
+            x = 1;
+            for (int i = 30; i < 40; i++)
+            {
+                polja[i].X = pbxTabla.Width - 30;
+                polja[i].Y = 42 * x;
+                x++;
+            }
         }
-       /* void PomeriIgraca(int koraka)
+        void PomeriIgraca(int koraka)//
         {
             preostaliKoraci = koraka;
             tmrKretanje.Start();
         }
-
-        private void tmrKretanje_Tick(object sender, EventArgs e)
+        private void tmrKretanje_Tick(object sender, EventArgs e)//
         {
             Igrac igrac = igraci[naPotezu];
-            igrac.Pozicija = (ig.Pozicija + 1) % 40;
+            igrac.Pozicija = (igrac.Pozicija + 1) % 40;
             PostaviFiguricu(igrac);
-            preostaloKoraci--;
+            preostaliKoraci--;
 
-            if (preostaiKoraci == 0)
+            if (preostaliKoraci == 0)
             {
                 tmrKretanje.Stop();
                 krajPoteza();
             }
-        }*/
+        }
         void PostaviFiguricu(Igrac igrac)
         {
             Point p = polja[igrac.Pozicija];
-            int pomeraj = (igrac.Index - 1) * 6;   // da se figurice na istom polju ne poklope
+            int pomeraj = (igrac.Index - 1) * 6;   // da se figurice na istom polju ne poklope <- ne radi
             igrac.Pbx.Location = new Point(p.X - 15 + pomeraj, p.Y - 15 + pomeraj);
         }
         void NacrtajKocku(PictureBox pbx, int kocka, PaintEventArgs e)
@@ -91,15 +123,13 @@ namespace LogIn
             g.DrawRectangle(new Pen(Color.Black, 5), 1, 1, sirina - 3, visina - 3);
             Point[] tacke =
                 {
-                 new Point(sirina / 4, visina / 4),//gore levo
-               
-                 new Point(sirina * 3 / 4, visina / 4),//gore desno
-                 new Point(sirina / 4, visina / 2),//sredina levo
-                 new Point(sirina / 2, visina / 2),//sredina
-                new Point(sirina * 3 / 4, visina / 2),//desno sredina
-                new Point(sirina / 4, visina * 3 / 4),//dole levo
-               
-                 new Point(sirina * 3 / 4, visina * 3 / 4)//dole desno
+                    new Point(sirina / 4, visina / 4),//gore levo
+                    new Point(sirina * 3 / 4, visina / 4),//gore desno
+                    new Point(sirina / 4, visina / 2),//sredina levo
+                    new Point(sirina / 2, visina / 2),//sredina
+                    new Point(sirina * 3 / 4, visina / 2),//desno sredina
+                    new Point(sirina / 4, visina * 3 / 4),//dole levo
+                    new Point(sirina * 3 / 4, visina * 3 / 4)//dole desno
                 };
 
             switch (kocka)
@@ -116,7 +146,6 @@ namespace LogIn
                         NacrtajTackicu(g, tacke[i]);
                     }
                     break;
-
             }
         }
         void NacrtajTackicu(Graphics g, Point tacka)
@@ -137,7 +166,7 @@ namespace LogIn
             {
                 tmrKocka.Stop();
                 btnKocke.Enabled = true;
-            //    PomeriIgraca(kocka1 + kocka2);
+                PomeriIgraca(kocka1 + kocka2);//
             }
         }
         private void pbxKocka1_Paint(object sender, PaintEventArgs e)
@@ -152,9 +181,14 @@ namespace LogIn
         void krajPoteza()
         {
             // Dodati sta treba - ako je stao na neko polje itd...
-            if (kocka1 != kocka2)                      
+            if (kocka1 != kocka2)
                 naPotezu = (naPotezu + 1) % igraci.Count;
-            btnKocke.Enabled = true;                  
+            else
+            {
+                kolikoDuplih++;
+                if(kolikoDuplih>2) naPotezu = (naPotezu + 1) % igraci.Count;
+            }
+            btnKocke.Enabled = true;
         }
     }
 }
