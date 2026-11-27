@@ -11,18 +11,23 @@ namespace LogIn
         string figurica;
         Image slikaFigurice;
         int indexIgraca;
+        Polje trenutnoPolje;
         static int brojIgraca = 0;
+        int novac;
+        List<Polje> nekretnine;
         public Igrac(string ime, string figurica, Image slikaFigurice)
         {
             this.ime = ime;
             this.figurica = figurica;
             this.slikaFigurice = slikaFigurice;
             indexIgraca = ++brojIgraca;
+            novac = 1500;
         }
         public Igrac(string ime)
         {
             this.ime = ime;
             indexIgraca = ++brojIgraca;
+            novac = 1500;
         }
         public string Figurica
         {
@@ -49,6 +54,21 @@ namespace LogIn
                 return info;
             }
         }
-
+        public Polje TrenutnoPolje { get { return trenutnoPolje; } set { trenutnoPolje = value; } }
+        public int Novac { get { return novac; } set { novac = value; } }
+        public void KupiPolje(Polje polje)
+        {
+            if (novac < polje.Cena)
+            {
+                throw new Exception("Nemate dovoljno novca!");
+            }
+            novac -= polje.Cena;
+            if(nekretnine == null)
+            {
+                nekretnine = new List<Polje>();
+            }
+            nekretnine.Add(polje);
+            polje.Vlasnik = this;
+        }
     }
 }

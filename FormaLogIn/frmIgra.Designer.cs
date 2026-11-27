@@ -36,7 +36,9 @@
             pbxKocka2 = new PictureBox();
             tmrKretanje = new System.Windows.Forms.Timer(components);
             lblIspisStanja = new Label();
-            lblIspis = new Label();
+            lblIspisPoteza = new Label();
+            lblIspisNovca = new Label();
+            lblSledeciIgrac = new Label();
             ((System.ComponentModel.ISupportInitialize)pbxTabla).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxKocka1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbxKocka2).BeginInit();
@@ -45,9 +47,10 @@
             // pbxTabla
             // 
             pbxTabla.Image = Properties.Resources.tabla;
-            pbxTabla.Location = new Point(258, 15);
+            pbxTabla.Location = new Point(226, 11);
+            pbxTabla.Margin = new Padding(3, 2, 3, 2);
             pbxTabla.Name = "pbxTabla";
-            pbxTabla.Size = new Size(571, 671);
+            pbxTabla.Size = new Size(500, 503);
             pbxTabla.SizeMode = PictureBoxSizeMode.StretchImage;
             pbxTabla.TabIndex = 0;
             pbxTabla.TabStop = false;
@@ -59,29 +62,32 @@
             // 
             // btnKocke
             // 
-            btnKocke.Location = new Point(1006, 552);
+            btnKocke.Location = new Point(880, 414);
+            btnKocke.Margin = new Padding(3, 2, 3, 2);
             btnKocke.Name = "btnKocke";
-            btnKocke.Size = new Size(94, 29);
+            btnKocke.Size = new Size(82, 22);
             btnKocke.TabIndex = 1;
-            btnKocke.Text = "Backi kocku";
+            btnKocke.Text = "Baci kockicu";
             btnKocke.UseVisualStyleBackColor = true;
             btnKocke.Click += btnKocke_Click;
             // 
             // pbxKocka1
             // 
             pbxKocka1.BackColor = Color.White;
-            pbxKocka1.Location = new Point(936, 419);
+            pbxKocka1.Location = new Point(819, 314);
+            pbxKocka1.Margin = new Padding(3, 2, 3, 2);
             pbxKocka1.Name = "pbxKocka1";
-            pbxKocka1.Size = new Size(101, 100);
+            pbxKocka1.Size = new Size(88, 75);
             pbxKocka1.TabIndex = 2;
             pbxKocka1.TabStop = false;
             // 
             // pbxKocka2
             // 
             pbxKocka2.BackColor = Color.White;
-            pbxKocka2.Location = new Point(1046, 419);
+            pbxKocka2.Location = new Point(915, 314);
+            pbxKocka2.Margin = new Padding(3, 2, 3, 2);
             pbxKocka2.Name = "pbxKocka2";
-            pbxKocka2.Size = new Size(101, 100);
+            pbxKocka2.Size = new Size(88, 75);
             pbxKocka2.TabIndex = 3;
             pbxKocka2.TabStop = false;
             // 
@@ -92,32 +98,53 @@
             // lblIspisStanja
             // 
             lblIspisStanja.AutoSize = true;
-            lblIspisStanja.Location = new Point(38, 31);
+            lblIspisStanja.Location = new Point(33, 23);
             lblIspisStanja.Name = "lblIspisStanja";
-            lblIspisStanja.Size = new Size(0, 20);
+            lblIspisStanja.Size = new Size(0, 15);
             lblIspisStanja.TabIndex = 4;
             // 
-            // lblIspis
+            // lblIspisPoteza
             // 
-            lblIspis.AutoSize = true;
-            lblIspis.Location = new Point(44, 15);
-            lblIspis.MinimumSize = new Size(100, 50);
-            lblIspis.Name = "lblIspis";
-            lblIspis.Size = new Size(100, 50);
-            lblIspis.TabIndex = 5;
+            lblIspisPoteza.AutoSize = true;
+            lblIspisPoteza.Location = new Point(38, 11);
+            lblIspisPoteza.MinimumSize = new Size(88, 38);
+            lblIspisPoteza.Name = "lblIspisPoteza";
+            lblIspisPoteza.Size = new Size(88, 38);
+            lblIspisPoteza.TabIndex = 5;
+            // 
+            // lblIspisNovca
+            // 
+            lblIspisNovca.AutoSize = true;
+            lblIspisNovca.Location = new Point(33, 49);
+            lblIspisNovca.MinimumSize = new Size(88, 38);
+            lblIspisNovca.Name = "lblIspisNovca";
+            lblIspisNovca.Size = new Size(88, 38);
+            lblIspisNovca.TabIndex = 6;
+            // 
+            // lblSledeciIgrac
+            // 
+            lblSledeciIgrac.AutoSize = true;
+            lblSledeciIgrac.Location = new Point(882, 438);
+            lblSledeciIgrac.MinimumSize = new Size(80, 30);
+            lblSledeciIgrac.Name = "lblSledeciIgrac";
+            lblSledeciIgrac.Size = new Size(80, 30);
+            lblSledeciIgrac.TabIndex = 7;
             // 
             // frmIgra
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 192, 192);
-            ClientSize = new Size(1158, 700);
-            Controls.Add(lblIspis);
+            ClientSize = new Size(1013, 525);
+            Controls.Add(lblSledeciIgrac);
+            Controls.Add(lblIspisNovca);
+            Controls.Add(lblIspisPoteza);
             Controls.Add(lblIspisStanja);
             Controls.Add(pbxKocka2);
             Controls.Add(pbxKocka1);
             Controls.Add(btnKocke);
             Controls.Add(pbxTabla);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmIgra";
             Text = "frmIgra";
             Load += frmIgra_Load;
@@ -137,6 +164,8 @@
         private PictureBox pbxKocka2;
         private System.Windows.Forms.Timer tmrKretanje;
         private Label lblIspisStanja;
-        private Label lblIspis;
+        private Label lblIspisPoteza;
+        private Label lblIspisNovca;
+        private Label lblSledeciIgrac;
     }
 }

@@ -22,7 +22,6 @@ namespace LogIn
         int kolikoDuplih = 0;
         List<Polje> poljaTable = new List<Polje>();//NOVO
 
-
         public frmIgra() : this(new List<Igrac>())
         {
         } //sta je ovo? jel sme da se brise?
@@ -43,6 +42,7 @@ namespace LogIn
             btnKocke.Enabled = false;
             brojPromena = 0;
             tmrKocka.Start();
+            KrajPoteza();//da ne bi nestalo odmah, a menjace se igrac tek kad baci kockicu(pise ko baca kockicu)
         }
 
         private void frmIgra_Load(object sender, EventArgs e)
@@ -50,10 +50,10 @@ namespace LogIn
             NapraviPolja();
             pbxKocka1.Refresh();
             pbxKocka2.Refresh();
-           
+
             //polja na donjoj strani, s desna na levo
             int x = 1;
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 polja[i].X = pbxTabla.Width - 42 * x;
                 polja[i].Y = pbxTabla.Height - 30;
@@ -85,6 +85,7 @@ namespace LogIn
             }
             foreach (Igrac i in igraci)
             {
+                i.TrenutnoPolje = poljaTable[0];
                 i.Pozicija = 0;
                 PictureBox pbx = new PictureBox();
                 pbx.Image = i.SlikaFigurice;
@@ -95,9 +96,9 @@ namespace LogIn
                 i.Pbx = pbx;
                 PostaviFiguricu(i);
             }
-            PrikaziNaPotezu();
+            PrikaziStanjeIgraca();
         }
-        void PomeriIgraca(int koraka)//
+        void PomeriIgraca(int koraka)
         {
             preostaliKoraci = koraka;
             tmrKretanje.Start();
@@ -106,20 +107,29 @@ namespace LogIn
         {
             Igrac igrac = igraci[naPotezu];
             igrac.Pozicija = (igrac.Pozicija + 1) % 40;
+            igraci[naPotezu].TrenutnoPolje = poljaTable[igrac.Pozicija];
             PostaviFiguricu(igrac);
             preostaliKoraci--;
 
             if (preostaliKoraci == 0)
             {
+                if (igraci[naPotezu].TrenutnoPolje.Naziv == "IDI U ZATVOR")
+                {
+                    igraci[naPotezu].TrenutnoPolje = poljaTable[10];//zatvor
+                    igraci[naPotezu].Pozicija = 10;
+                    PostaviFiguricu(igraci[naPotezu]);
+                    kocka1 = kocka1 + kocka2;//da ne bi bile iste da bi presao na sledeceg igraca
+                }
                 tmrKretanje.Stop();
-                krajPoteza();
+                ProveraPolja();//ovde je umesto krajPoteza() sada provera polja
+                PrikaziStanjeIgraca();
             }
         }
         void PostaviFiguricu(Igrac igrac)
         {
             Point p = polja[igrac.Pozicija];
-            /*int pomeraj = (igrac.Index - 1) * 6;   // da se figurice na istom polju ne poklope <- ne radi
-            igrac.Pbx.Location = new Point(p.X - 15 + pomeraj, p.Y - 15 + pomeraj);*///ya sada neka bude zakomentarisano dok ne smislimo nesto pamento
+            int pomeraj = (igrac.Index - 1) * 6;   // da se figurice na istom polju ne poklope <- ne radi
+            igrac.Pbx.Location = new Point(p.X - 15 + pomeraj, p.Y - 15 + pomeraj);//ya sada neka bude zakomentarisano dok ne smislimo nesto pamento
         }
         void NacrtajKocku(PictureBox pbx, int kocka, PaintEventArgs e)
         {
@@ -173,7 +183,7 @@ namespace LogIn
             {
                 tmrKocka.Stop();
                 btnKocke.Enabled = true;
-                PomeriIgraca(kocka1 + kocka2);//
+                PomeriIgraca(kocka1 + kocka2);
             }
         }
         private void pbxKocka1_Paint(object sender, PaintEventArgs e)
@@ -185,32 +195,50 @@ namespace LogIn
         {
             NacrtajKocku(pbxKocka2, kocka2, e);
         }
-        void krajPoteza()
+        void ProveraPolja() //razdvojila sam metodu KrajPoteza zbog onog gore, da ne nestane odmah sve kad se pomeri figurica nego tek kad krene sledeci igrac
         {
             // Dodati sta treba - ako je stao na neko polje itd...
+            if (igraci[naPotezu].TrenutnoPolje.Vlasnik == null && igraci[naPotezu].TrenutnoPolje.Vrsta == "Nekretnina")
+            {
+                DialogResult r = MessageBox.Show(
+                    $"Zelite li da kupite ovu nekretninu? ({igraci[naPotezu].TrenutnoPolje.Naziv})",
+                    "KUPOVINA",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                    );
+                if (r == DialogResult.Yes)
+                {
+                    igraci[naPotezu].KupiPolje(igraci[naPotezu].TrenutnoPolje);
+                }
+                else { }//ovde ce biti licitacija
+            }
+        }
+        void KrajPoteza()
+        {
             if (kocka1 != kocka2)
                 naPotezu = (naPotezu + 1) % igraci.Count;
             else
             {
                 kolikoDuplih++;
-                if(kolikoDuplih>2) naPotezu = (naPotezu + 1) % igraci.Count;
+                if (kolikoDuplih > 2) naPotezu = (naPotezu + 1) % igraci.Count;
             }
             btnKocke.Enabled = true;
+            //PrikaziStanjeIgraca();
         }
         void NapraviPolja() //sta da radim sa vodovom i tim glupostima
         {
-            poljaTable.Add(new Polje(0, "START", "Start", 180));
+            poljaTable.Add(new Polje(0, "START", "Start", 200));
 
             poljaTable.Add(new Polje(1, "AVENIJA POPA JOCE", "Nekretnina", 60));
             poljaTable.Add(new Polje(2, "DRŽAVNA BLAGAJNA", "Državna Blagajna", 0));
             poljaTable.Add(new Polje(3, "AVENIJA POPA MIŠKA", "Nekretnina", 60));
-            poljaTable.Add(new Polje(4, "POREZ NA PLATU", "Kazna", 150));
+            poljaTable.Add(new Polje(4, "POREZ NA PLATU", "Kazna", -150));
             poljaTable.Add(new Polje(5, "GLAVNA STANICA 110", "Stanica", 200));
             poljaTable.Add(new Polje(6, "ULICA KNEZA MILOŠA", "Nekretnina", 100));
             poljaTable.Add(new Polje(7, "ŠANSA", "Šansa", 0));
             poljaTable.Add(new Polje(8, "ŠIMANOVCI", "Nekretnina", 100));
             poljaTable.Add(new Polje(9, "TRG ZVONKO BOGDANA", "Nekretnina", 120));
-            poljaTable.Add(new Polje(10, "POSETA ZATVORU", "Zatvor", 0));
+            poljaTable.Add(new Polje(10, "POSETA ZATVORU/ZATVOR", "Zatvor", 0));
             poljaTable.Add(new Polje(11, "BLOK KETOVIĆ", "Nekretnina", 140));
             poljaTable.Add(new Polje(12, "STRUJA", "Nekretnina", 150));
             poljaTable.Add(new Polje(13, "ANA ANŽUJSKA", "Nekretnina", 140));
@@ -218,7 +246,7 @@ namespace LogIn
             poljaTable.Add(new Polje(15, "STANICA 207", "Stanica", 200));
             poljaTable.Add(new Polje(16, "KRALJA PETRA PRVOG", "Nekretnina", 180));
             poljaTable.Add(new Polje(17, "DRŽAVNA BLAGAJNA", "Državna Blagajna", 0));
-            poljaTable.Add(new Polje(18, "CRKVA SVETOG LUKE", "Nekretnina",180));
+            poljaTable.Add(new Polje(18, "CRKVA SVETOG LUKE", "Nekretnina", 180));
             poljaTable.Add(new Polje(19, "BULEVAR MLADIĆA", "Nekretnina", 200));
             poljaTable.Add(new Polje(20, "BESPLATAN PARKING", "Parking", 180));
             poljaTable.Add(new Polje(21, "CRKVA SVETOG VASILIJA", "Nekretnina", 220));
@@ -230,7 +258,7 @@ namespace LogIn
             poljaTable.Add(new Polje(27, "MOST JOVANA ANTOVIĆA", "Nekretnina", 260));
             poljaTable.Add(new Polje(28, "GRADSKI VODOVOD", "Nekretnina", 150));//
             poljaTable.Add(new Polje(29, "BLOK IVANA", "Nekretnina", 280));
-            poljaTable.Add(new Polje(30, "ZATVOR", "Zatvor", 0));
+            poljaTable.Add(new Polje(30, "IDI U ZATVOR", "Zatvor", 0));
             poljaTable.Add(new Polje(31, "TOPOVI PUKOVNIKA MIHAJLA", "Nekretnina", 300));
             poljaTable.Add(new Polje(32, "TERENI SRETENA PETROVIĆA", "Nekretnina", 300));
             poljaTable.Add(new Polje(33, "DRŽAVNA BLAGAJNA", "Državna Blagajna", 0));
@@ -238,13 +266,17 @@ namespace LogIn
             poljaTable.Add(new Polje(35, "STANICA 206", "Stanica", 200));
             poljaTable.Add(new Polje(36, "ŠANSA", "Šansa", 0));
             poljaTable.Add(new Polje(37, "GALERIJA SAVIĆA", "Nekretnina", 350));
-            poljaTable.Add(new Polje(38, "DODATNI POREZ", "Kazna", 150));
-            poljaTable.Add(new Polje(39, "BULEVAR KRALJICE MIONE", "Nekretnina",400));
+            poljaTable.Add(new Polje(38, "DODATNI POREZ", "Kazna", -150));
+            poljaTable.Add(new Polje(39, "BULEVAR KRALJICE MIONE", "Nekretnina", 400));
 
         }
-        void PrikaziNaPotezu()
+        void PrikaziStanjeIgraca()//msm da ovde nesto ne radi lepo kad se prikazuju imena
         {
-            lblIspis.Text = "Na potezu je: " + igraci[naPotezu].Ime;
+            lblIspisPoteza.Text = $"Na potezu je: {igraci[naPotezu].Ime}";
+            lblIspisNovca.Text = $"Trenutno stanje novca: {igraci[naPotezu].Novac}";
+            if(kocka1==kocka2) lblSledeciIgrac.Text = $"Kockicu baca {igraci[naPotezu].Ime}";
+            else lblSledeciIgrac.Text = $"Kockicu baca {igraci[(naPotezu+1)%igraci.Count].Ime}";
         }
+
     }
 }
